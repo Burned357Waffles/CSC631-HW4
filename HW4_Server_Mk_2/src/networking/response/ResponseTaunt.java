@@ -25,5 +25,7 @@ public class ResponseTaunt extends GameResponse {
         return packet.getBytes();
     }
 
-
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 }

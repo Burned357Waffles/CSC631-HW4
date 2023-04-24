@@ -9,7 +9,7 @@ public class RequestTaunt : NetworkRequest
         request_id = Constants.CMSG_TAUNT;
     }
 
-    public void send(string name)
+    public void send()
     {
         packet = new GamePacket(request_id);
     }

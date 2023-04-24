@@ -180,7 +180,7 @@ public class MainMenu : MonoBehaviour
 
 	public void OnResponseLeave(ExtendedEventArgs eventArgs)
 	{
-		ResponseLeaveEventArgs args = eventArgs as ResponseLeaveEventArgs;
+		ResponseForfeitEventArgs args = eventArgs as ResponseForfeitEventArgs;
 		if (args.user_id != Constants.USER_ID)
 		{
 			opponentName.text = "Waiting for opponent";

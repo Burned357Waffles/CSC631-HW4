@@ -5,6 +5,7 @@ import java.io.IOException;
 import core.NetworkManager;
 import model.Player;
 import networking.response.ResponseTaunt;
+import utility.Log;
 
 public class RequestTaunt extends GameRequest {
 
@@ -23,6 +24,8 @@ public class RequestTaunt extends GameRequest {
     @Override
     public void doBusiness() throws Exception {
         player = client.getPlayer();
+
+        responseTaunt.setPlayer(player);
 
         NetworkManager.addResponseForAllOnlinePlayers(player.getID(), responseTaunt);
         

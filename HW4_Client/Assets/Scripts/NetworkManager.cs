@@ -103,6 +103,30 @@ public class NetworkManager : MonoBehaviour
 		return false;
 	}
 
+	public bool SendForfeitRequest()
+	{
+		if (cManager && cManager.IsConnected())
+		{
+			RequestForfeit request = new RequestForfeit();
+			request.send();
+			cManager.send(request);
+			return true;
+		}
+		return false;
+	}
+
+	public bool SendTauntRequest()
+	{
+		if (cManager && cManager.IsConnected())
+		{
+			RequestTaunt request = new RequestTaunt();
+			request.send();
+			cManager.send(request);
+			return true;
+		}
+		return false;
+	}
+
 	public IEnumerator RequestHeartbeat(float time)
 	{
 		yield return new WaitForSeconds(time);

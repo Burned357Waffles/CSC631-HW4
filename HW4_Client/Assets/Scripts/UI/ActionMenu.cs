@@ -22,6 +22,16 @@ public class ActionMenu : MonoBehaviour
 		gameManager.StartInteraction();
 	}
 
+	public void OnForfeitClick()
+	{
+		gameManager.Forfeit();
+	}
+
+	public void OnTauntClick()
+	{
+		gameManager.Taunt();
+	}
+
 	void Update()
 	{
 		interactButton.interactable = gameManager.CanInteract();
