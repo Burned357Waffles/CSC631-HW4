@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RequestTaunt : NetworkRequest
 {
-    public RequestSetName()
+    public RequestTaunt()
     {
         request_id = Constants.CMSG_TAUNT;
     }
