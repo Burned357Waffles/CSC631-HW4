@@ -24,7 +24,8 @@ public class GameManager : MonoBehaviour
 		MessageQueue msgQueue = networkManager.GetComponent<MessageQueue>();
 		msgQueue.AddCallback(Constants.SMSG_MOVE, OnResponseMove);
 		msgQueue.AddCallback(Constants.SMSG_INTERACT, OnResponseInteract);
-		msgQueue.AddCallback(Constants.SMSG_TAUNT, OnResponseTaunt)
+		msgQueue.AddCallback(Constants.SMSG_TAUNT, OnResponseTaunt);
+		msqQueue.AddCallback(Constants.SMSG_FORFEIT, OnResponseForfeit);
 	}
 
 	public Player GetCurrentPlayer()
@@ -287,5 +288,10 @@ public class GameManager : MonoBehaviour
 		{
 			Debug.Log("ERROR: Invalid user_id in ResponseTaunt: " + args.user_id);
 		}
+	}
+
+	public void OnResponseForfeit(ExtendedEventArgs eventArgs)
+	{
+		
 	}
 }
