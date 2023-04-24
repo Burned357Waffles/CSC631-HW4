@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResponseTaunt : ExtendedEventArgs
+public class ResponseTauntEventArgs : ExtendedEventArgs
 {
     public int user_id { get; set; } // The user_id of whom who sent the request
 
