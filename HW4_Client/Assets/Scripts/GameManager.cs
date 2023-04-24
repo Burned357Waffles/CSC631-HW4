@@ -119,6 +119,32 @@ public class GameManager : MonoBehaviour
 		currentPlayer = 3 - currentPlayer;
 	}
 
+	public void Forfeit()
+	{
+		if (useNetwork)
+		{
+			networkManager.SendForfeitRequest();
+		}
+		else
+		{
+			// Not on network, just forfeit locally
+			Debug.Log("Forfeit");
+		}
+	}
+
+	public void Taunt()
+	{
+		if(useNetwork)
+		{
+			networkManager.SendTauntRequest();
+		}
+		else
+		{
+			// Not on network, just taunt locally
+			Debug.Log("Taunt");
+		}
+	}
+
 	public void ProcessClick(GameObject hitObject)
 	{
 		if (hitObject.tag == "Tile")
@@ -266,32 +292,11 @@ public class GameManager : MonoBehaviour
 
 	public void OnResponseTaunt(ExtendedEventArgs eventArgs)
 	{
-		ResponseInteractEventArgs args = eventArgs as ResponseInteractEventArgs;
-		if (args.user_id == Constants.OP_ID)
-		{
-			
-			/*
-			int pieceIndex = args.piece_idx;
-			int x = args.x;
-			int y = args.y;
-			Hero hero = Players[args.user_id - 1].Heroes[pieceIndex];
-			gameBoard[hero.x, hero.y] = null;
-			hero.Move(x, y);
-			gameBoard[x, y] = hero;
-			*/
-		}
-		else if (args.user_id == Constants.USER_ID)
-		{
-			// Ignore
-		}
-		else
-		{
-			Debug.Log("ERROR: Invalid user_id in ResponseTaunt: " + args.user_id);
-		}
+		Debug.Log("ResponseTaunt");
 	}
 
 	public void OnResponseForfeit(ExtendedEventArgs eventArgs)
 	{
-		
+		Debug.Log("ResponseForfeit");
 	}
 }
