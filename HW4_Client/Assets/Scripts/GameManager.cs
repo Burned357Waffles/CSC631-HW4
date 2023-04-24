@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 		msgQueue.AddCallback(Constants.SMSG_MOVE, OnResponseMove);
 		msgQueue.AddCallback(Constants.SMSG_INTERACT, OnResponseInteract);
 		msgQueue.AddCallback(Constants.SMSG_TAUNT, OnResponseTaunt);
-		msqQueue.AddCallback(Constants.SMSG_FORFEIT, OnResponseForfeit);
+		msgQueue.AddCallback(Constants.SMSG_FORFEIT, OnResponseForfeit);
 	}
 
 	public Player GetCurrentPlayer()
