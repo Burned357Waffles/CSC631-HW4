@@ -169,8 +169,12 @@ public class GameManager : MonoBehaviour
 			gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 			forfeitText =  GameObject.Find("Forfeited Text").GetComponent<TMPro.TextMeshProUGUI>();
 			forfeitText.text = "You suck!";
+			audioClip = GameObject.Find("Taunt Audio").GetComponent<AudioSource>();
+			audioClip.Play();
+
 			await Task.Delay(2000);
 			forfeitText.text = "";
+
 		}
 	}
 
@@ -326,6 +330,8 @@ public class GameManager : MonoBehaviour
 		forfeitText =  GameObject.Find("Forfeited Text").GetComponent<TMPro.TextMeshProUGUI>();
 		
 		forfeitText.text = "You suck!";
+		audioClip = GameObject.Find("Taunt Audio").GetComponent<AudioSource>();
+		audioClip.Play();
 		await Task.Delay(2000);
 		forfeitText.text = "";
 	}
