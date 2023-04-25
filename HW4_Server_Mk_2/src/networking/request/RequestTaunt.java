@@ -16,6 +16,7 @@ public class RequestTaunt extends GameRequest {
     {
         responses.add(responseTaunt = new ResponseTaunt());
     }
+    
     @Override
     public void parse() throws IOException {    
 
@@ -25,9 +26,9 @@ public class RequestTaunt extends GameRequest {
     public void doBusiness() throws Exception {
         player = client.getPlayer();
 
-        Log.printf("here");
+
         responseTaunt.setPlayer(player);
-        Log.printf("there");
+
         NetworkManager.addResponseForAllOnlinePlayers(player.getID(), responseTaunt);
         
     }

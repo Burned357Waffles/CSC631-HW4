@@ -14,6 +14,7 @@ public class ResponseTaunt extends GameResponse {
     {
         responseCode = Constants.SMSG_TAUNT;
     }
+    
     @Override
     public byte[] constructResponseInBytes() {
         GamePacket packet = new GamePacket(responseCode);

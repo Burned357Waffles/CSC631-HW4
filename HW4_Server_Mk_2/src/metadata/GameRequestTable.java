@@ -44,7 +44,7 @@ public class GameRequestTable {
         try {
             requestTable.put(code, Class.forName("networking.request." + name));
         } catch (ClassNotFoundException e) {
-            Log.println_e(e.getMessage());
+            Log.println_e("Failed adding request " + e.getMessage() + " to request table.");
         }
     }
 
