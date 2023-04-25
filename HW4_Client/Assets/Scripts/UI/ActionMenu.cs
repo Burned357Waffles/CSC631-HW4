@@ -27,13 +27,11 @@ public class ActionMenu : MonoBehaviour
 
 	public void OnForfeitClick()
 	{
-		forfeitText.text = gameManager.GetCurrentPlayer().Name + " forfeited, exiting in 3 seconds";
 		gameManager.Forfeit();
 	}
 
 	public void OnTauntClick()
 	{
-		forfeitText.text = gameManager.GetCurrentPlayer().Name + " forfeited, exiting in 3 seconds";
 		gameManager.Taunt();
 	}
 

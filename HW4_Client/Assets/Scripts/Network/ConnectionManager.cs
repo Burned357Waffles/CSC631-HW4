@@ -63,6 +63,8 @@ public class ConnectionManager : MonoBehaviour
 					MessageQueue msgQueue = networkManager.GetComponent<MessageQueue>();
 					msgQueue.AddMessage(args.event_id, args);
 				}
+				Debug.Log("this is the response " + response.ToString());
+				Debug.Log("this is the response id " + response_id);
 			}
 		}
 	}

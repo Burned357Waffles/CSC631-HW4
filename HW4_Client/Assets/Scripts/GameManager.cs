@@ -31,8 +31,6 @@ public class GameManager : MonoBehaviour
 		msgQueue.AddCallback(Constants.SMSG_INTERACT, OnResponseInteract);
 		msgQueue.AddCallback(Constants.SMSG_TAUNT, OnResponseTaunt);
 		msgQueue.AddCallback(Constants.SMSG_FORFEIT, OnResponseForfeit);
-
-		Taunt();
 	}
 
 	public Player GetCurrentPlayer()
@@ -136,6 +134,9 @@ public class GameManager : MonoBehaviour
 		{
 			// Not on network, just forfeit locally
 			Debug.Log("Forfeit");
+			gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+			forfeitText =  GameObject.Find("Forfeited Text").GetComponent<TMPro.TextMeshProUGUI>();
+			forfeitText.text = gameManager.GetCurrentPlayer().Name + " forfeited, exiting in 3 seconds";
 			LocalForfeit();
 		}
 	}
@@ -155,7 +156,7 @@ public class GameManager : MonoBehaviour
 		#endif
 	}
 
-	public void Taunt()
+	public async void Taunt()
 	{
 		if(useNetwork)
 		{
@@ -165,6 +166,11 @@ public class GameManager : MonoBehaviour
 		{
 			// Not on network, just taunt locally
 			Debug.Log("Taunt");
+			gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+			forfeitText =  GameObject.Find("Forfeited Text").GetComponent<TMPro.TextMeshProUGUI>();
+			forfeitText.text = "You suck!";
+			await Task.Delay(2000);
+			forfeitText.text = "";
 		}
 	}
 
@@ -319,18 +325,9 @@ public class GameManager : MonoBehaviour
 		gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 		forfeitText =  GameObject.Find("Forfeited Text").GetComponent<TMPro.TextMeshProUGUI>();
 		
-		forfeitText.text = gameManager.GetCurrentPlayer().Name + " forfeited, exiting in 3 seconds";
-		#if UNITY_EDITOR
-		{
-			await Task.Delay(3000);
-			UnityEditor.EditorApplication.isPlaying = false;
-		}
-		#else 
-		{
-			await Task.Delay(3000);
-			Application.Quit();
-		}
-		#endif
+		forfeitText.text = "You suck!";
+		await Task.Delay(2000);
+		forfeitText.text = "";
 	}
 
 	public async void OnResponseForfeit(ExtendedEventArgs eventArgs)
