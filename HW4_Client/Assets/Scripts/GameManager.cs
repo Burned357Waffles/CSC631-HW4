@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -16,6 +18,9 @@ public class GameManager : MonoBehaviour
 
 	private bool useNetwork;
 	private NetworkManager networkManager;
+	
+	private GameManager gameManager;
+	private TMPro.TextMeshProUGUI forfeitText;
 
 	void Start()
 	{
@@ -131,7 +136,23 @@ public class GameManager : MonoBehaviour
 		{
 			// Not on network, just forfeit locally
 			Debug.Log("Forfeit");
+			LocalForfeit();
 		}
+	}
+
+	private static async void LocalForfeit()
+	{
+		#if UNITY_EDITOR
+		{
+			await Task.Delay(3000);
+			UnityEditor.EditorApplication.isPlaying = false;
+		}
+		#else 
+		{
+			await Task.Delay(3000);
+			Application.Quit();
+		}
+		#endif
 	}
 
 	public void Taunt()
@@ -292,13 +313,43 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public void OnResponseTaunt(ExtendedEventArgs eventArgs)
+	public async void OnResponseTaunt(ExtendedEventArgs eventArgs)
 	{
 		Debug.Log("ResponseTaunt");
+		gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+		forfeitText =  GameObject.Find("Forfeited Text").GetComponent<TMPro.TextMeshProUGUI>();
+		
+		forfeitText.text = gameManager.GetCurrentPlayer().Name + " forfeited, exiting in 3 seconds";
+		#if UNITY_EDITOR
+		{
+			await Task.Delay(3000);
+			UnityEditor.EditorApplication.isPlaying = false;
+		}
+		#else 
+		{
+			await Task.Delay(3000);
+			Application.Quit();
+		}
+		#endif
 	}
 
-	public void OnResponseForfeit(ExtendedEventArgs eventArgs)
+	public async void OnResponseForfeit(ExtendedEventArgs eventArgs)
 	{
 		Debug.Log("ResponseForfeit");
+		gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+		forfeitText =  GameObject.Find("Forfeited Text").GetComponent<TMPro.TextMeshProUGUI>();
+		
+		forfeitText.text = gameManager.GetCurrentPlayer().Name + " forfeited, exiting in 3 seconds";
+		#if UNITY_EDITOR
+		{
+			await Task.Delay(3000);
+			UnityEditor.EditorApplication.isPlaying = false;
+		}
+		#else 
+		{
+			await Task.Delay(3000);
+			Application.Quit();
+		}
+#endif
 	}
 }

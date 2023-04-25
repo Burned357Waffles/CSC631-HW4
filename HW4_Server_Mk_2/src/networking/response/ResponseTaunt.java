@@ -10,14 +10,12 @@ public class ResponseTaunt extends GameResponse {
     Player player;
     private int playerId;
     
-    public ResponseTaunt(int playerId)
+    public ResponseTaunt()
     {
         responseCode = Constants.SMSG_TAUNT;
-        this.playerId = playerId;
     }
     @Override
     public byte[] constructResponseInBytes() {
-        // TODO Auto-generated method stub
         GamePacket packet = new GamePacket(responseCode);
         packet.addInt32(playerId);
         Log.printf("Player %d taunted", player.getID());
