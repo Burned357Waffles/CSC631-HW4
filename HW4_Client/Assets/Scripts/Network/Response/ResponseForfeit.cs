@@ -8,7 +8,7 @@ public class ResponseForfeitEventArgs : ExtendedEventArgs
 
 	public ResponseForfeitEventArgs()
 	{
-		event_id = Constants.SMSG_LEAVE;
+		event_id = Constants.SMSG_FORFEIT;
 	}
 }
 
